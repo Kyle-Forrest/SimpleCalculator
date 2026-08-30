@@ -10,7 +10,8 @@ namespace Calculator.Functionality
         private Form1 _mainForm;
 
         //math memory
-        private List<float> _numbers = new List<float>(); 
+        private float _numberOne = 0;
+        private float _numberTwo = 0;
         private string _currentOperator = "";
 
         public Calculator(Form1 mainform)
@@ -20,7 +21,8 @@ namespace Calculator.Functionality
 
         public void ClearAll()
         {
-            _numbers.Clear();
+            _numberOne = 0;
+            _numberTwo = 0;
             _currentOperator = "";
         }
 
@@ -30,7 +32,7 @@ namespace Calculator.Functionality
 
             string userText = _mainForm.InputDisplay.Text;
 
-            if (float.TryParse (userText, out userInput))
+            if (float.TryParse(userText, out userInput))
             {
 
             }
@@ -44,9 +46,11 @@ namespace Calculator.Functionality
 
         public void SetOperation(string OperationSymbol)
         {
-            _numbers.Add(UserInput());
+            _numberTwo = UserInput();
 
             _currentOperator = OperationSymbol;
+
+            Calculate();
 
             _mainForm.InputDisplay.Clear();
             _mainForm.InputDisplay.SelectionAlignment = System.Windows.Forms.HorizontalAlignment.Right;
@@ -56,54 +60,42 @@ namespace Calculator.Functionality
         {
             float result = 0;
 
-            foreach (var item in _numbers)
-            {
-                result += item;
-            }
+            result = _numberOne + _numberTwo;
 
             return result;
         }
 
         public float Subtraction()
         {
-            float result = _numbers[0];
+            float result = 0;
 
-            for (int i = 1; i < _numbers.Count(); i++)
-            {
-                result -= _numbers[i];
-            }
+            result = _numberOne - _numberTwo;
 
             return result;
         }
 
         public float Multiplication()
         {
-            float result = _numbers[0];
+            float result = 0;
 
-            for (int i = 1; i < _numbers.Count(); i++)
-            {
-                result *= _numbers[i];
-            }
+            result = _numberOne * _numberTwo;
 
             return result;
         }
 
         public float Division()
         {
-            float result = _numbers[0];
+            float result = 0;
 
-            for (int i = 1; i < _numbers.Count(); i++)
-            {
-                result /= _numbers[i];
-            }
+            result = _numberOne / _numberTwo;
 
             return result;
         }
 
         public void Calculate()
         {
-            _numbers.Add(UserInput());
-            
+            _numberTwo = UserInput();
+
             float output = 0;
 
             switch (_currentOperator)
@@ -120,7 +112,7 @@ namespace Calculator.Functionality
                     output = Multiplication();
                     break;
 
-                case "÷": 
+                case "÷":
                     output = Division();
                     break;
             }
@@ -128,6 +120,7 @@ namespace Calculator.Functionality
             _mainForm.InputDisplay.Text = ($"{output:F2}");
 
             ClearAll();
+            _numberOne = output;
         }
     }
 }
