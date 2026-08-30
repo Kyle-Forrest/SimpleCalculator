@@ -66,7 +66,7 @@ namespace Calculator.Functionality
 
         public float Subtraction()
         {
-            float result = _numbers[1];
+            float result = _numbers[0];
 
             for (int i = 1; i < _numbers.Count(); i++)
             {
@@ -78,7 +78,7 @@ namespace Calculator.Functionality
 
         public float Multiplication()
         {
-            float result = _numbers[1];
+            float result = _numbers[0];
 
             for (int i = 1; i < _numbers.Count(); i++)
             {
@@ -90,7 +90,7 @@ namespace Calculator.Functionality
 
         public float Division()
         {
-            float result = _numbers[1];
+            float result = _numbers[0];
 
             for (int i = 1; i < _numbers.Count(); i++)
             {
