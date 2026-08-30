@@ -46,11 +46,17 @@ namespace Calculator.Functionality
 
         public void SetOperation(string OperationSymbol)
         {
-            _numberTwo = UserInput();
+            if (_currentOperator == "")
+            {
+                _numberOne = UserInput();
+            }
+            else
+            {
+                _numberTwo = UserInput();
+                Calculate();
+            }
 
             _currentOperator = OperationSymbol;
-
-            Calculate();
 
             _mainForm.InputDisplay.Clear();
             _mainForm.InputDisplay.SelectionAlignment = System.Windows.Forms.HorizontalAlignment.Right;
