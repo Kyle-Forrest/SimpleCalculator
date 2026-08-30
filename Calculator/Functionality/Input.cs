@@ -52,7 +52,6 @@ namespace Calculator.Functionality
             }
             else
             {
-                _numberTwo = UserInput();
                 Calculate();
             }
 
