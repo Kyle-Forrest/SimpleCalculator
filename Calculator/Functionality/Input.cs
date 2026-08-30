@@ -66,11 +66,11 @@ namespace Calculator.Functionality
 
         public float Subtraction()
         {
-            float result = 0;
+            float result = _numbers[1];
 
-            foreach (var item in _numbers)
+            for (int i = 1; i < _numbers.Count(); i++)
             {
-                result -= item;
+                result -= _numbers[i];
             }
 
             return result;
@@ -78,11 +78,11 @@ namespace Calculator.Functionality
 
         public float Multiplication()
         {
-            float result = 0;
+            float result = _numbers[1];
 
-            foreach (var item in _numbers)
+            for (int i = 1; i < _numbers.Count(); i++)
             {
-                result *= item;
+                result *= _numbers[i];
             }
 
             return result;
@@ -90,11 +90,11 @@ namespace Calculator.Functionality
 
         public float Division()
         {
-            float result = 0;
+            float result = _numbers[1];
 
-            foreach (var item in _numbers)
+            for (int i = 1; i < _numbers.Count(); i++)
             {
-                result /= item;
+                result /= _numbers[i];
             }
 
             return result;
@@ -102,6 +102,8 @@ namespace Calculator.Functionality
 
         public void Calculate()
         {
+            _numbers.Add(UserInput());
+            
             float output = 0;
 
             switch (_currentOperator)
@@ -124,6 +126,8 @@ namespace Calculator.Functionality
             }
 
             _mainForm.InputDisplay.Text = ($"{output:F2}");
+
+            ClearAll();
         }
     }
 }
